@@ -22,6 +22,12 @@ body {
 .eq {
 	padding: 10px;
 }
+.eq:nth-of-type(odd) {
+	background: yellow;
+}
+.eq:nth-of-type(even) {
+	background: lightblue;
+}
 .displayWrap {
 	flex-wrap: wrap;
 }
@@ -38,3 +44,8 @@ body {
 .articleItem:nth-of-type(3n+1) {
 	margin-left: 0;	
 }
+
+#comments {
+    float: right;
+    width: 30%;
+  }
