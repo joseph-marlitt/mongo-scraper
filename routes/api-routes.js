@@ -1,5 +1,7 @@
 var db = require("../models");
 var request = require('request');
+var axios = require ("axios");
+var cheerio = require ("cheerio")
 
 module.exports = function(app) {
 app.get("/scrape", function(req, res) {
@@ -31,20 +33,16 @@ app.get("/scrape", function(req, res) {
     });
   });
   
-  // Route for getting all Articles from the db
   app.get("/articles", function(req, res) {
     db.Article.find({})
     .then(function(dbArticle){
       res.json(dbArticle)
     })
     .catch(function(err) {
-      // If an error occurs, send the error back to the client
       res.json(err);
     });
-    // TODO: Finish the route so it grabs all of the articles
   });
   
-  // Route for grabbing a specific Article by id, populate it with it's note
   app.get("/articles/:id", function(req, res) {
     db.Article.findById(req.params.id)
     .populate('comment')
@@ -52,17 +50,11 @@ app.get("/scrape", function(req, res) {
       res.json(dbArticle)
     })
     .catch(function(err) {
-      // If an error occurs, send the error back to the client
       res.json(err);
     });
-    // TODO
-    // ====
-    // Finish the route so it finds one article using the req.params.id,
-    // and run the populate method with "note",
-    // then responds with the article with the note included
+
   });
   
-  // Route for saving/updating an Article's associated Note
   app.post("/articles/:id", function(req, res) {
   
     db.Comment.create(req.body)
@@ -71,8 +63,8 @@ app.get("/scrape", function(req, res) {
   
     })
   
-    db.Article.findById(req.params._id)
-    .populate('comment')
+    // db.Article.findById(req.params._id)
+    // .populate('comment')
     .then(function(dbArticle){
       res.json(dbArticle)
     })

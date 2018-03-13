@@ -7,7 +7,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 var exphbs = require("express-handlebars");
 var db = require("./models");
-var PORT = 3000;
+var PORT = 3001;
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
