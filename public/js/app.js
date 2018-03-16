@@ -27,20 +27,23 @@ $(document).on("click", ".articleItem", function() {
   })
     .then(function(data) {
       console.log(data);
+      console.log(data.comments)
       $(".modal-content").append("<h2>" + data.title + "</h2>");
       $(".modal-content").append("<input id='titleinput' name='title' placeholder='Comment Title'>");
       $(".modal-content").append("<textarea id='bodyinput' name='body' placeholder='You found me! (For Example)'></textarea>");
       $(".modal-content").append("<button data-id='" + data._id + "' id='savecomment'>Comment</button>");
 
       if (data.comments) {
-        $("#titleinput").val(data.comments.title);
-        $("#bodyinput").val(data.comments.body);
+        $(".modal-content").append("<div id='pastComments' <h2>" + data.comments.title + "</h2>");
+        $("#pastComments").append("<h3>" + data.comments.body + "</h3>");
       }
     });
 });
 
 $(document).on("click", "#savecomment", function() {
-  var thisId = $(this).attr("data-id");
+  modal.style.display = "none";
+  thisId = $(this).attr("data-id");
+  console.log(thisId);
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
@@ -51,7 +54,7 @@ $(document).on("click", "#savecomment", function() {
   })
     .then(function(data) {
       console.log(data);
-      $("#comments").empty();
+      $(".commentsContainer").empty();
     });
 
   $("#titleinput").val("");
