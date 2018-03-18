@@ -14,7 +14,11 @@ body {
     font-family: sans-serif;
     line-height: 1.4;
   }
-
+#pageTitle{
+    margin: auto;
+    text-align: center;
+    width: 100%;
+}
 .eqWrap {
 	display: flex;
 }
@@ -23,10 +27,10 @@ body {
 	padding: 10px;
 }
 .eq:nth-of-type(odd) {
-	background: yellow;
+	background: lightpink;
 }
 .eq:nth-of-type(even) {
-	background: lightblue;
+	background: red;
 }
 .displayWrap {
 	flex-wrap: wrap;
